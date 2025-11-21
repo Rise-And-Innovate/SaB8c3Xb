@@ -5,368 +5,409 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, viewport-fit=cover, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <title>我的灵感笔记</title>
+    <title>未来协议：数字前沿解析</title>
     <style>
-        /* 全局样式 */
+        /* 全局重置与基础样式 */
         body {
             overflow: hidden;
-            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Roboto Mono', monospace;
+            /* 科技感等宽字体 */
             margin: 0;
             padding: 0;
-            background-color: #FDF8F5;
-            /* 浅米色背景 */
-            color: #4A4A4A;
-            /* 深灰色文本 */
+            background-color: #0A0A0A;
+            /* 极深背景 */
+            color: #E0E0E0;
+            /* 亮灰色文本 */
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* 容器 */
         .container {
-            max-width: 95%;
-            /* 更宽的容器，适应移动端边缘 */
+            max-width: 90%;
+            /* 适应移动端 */
             margin: 0 auto;
-            padding: 15px;
-            /* 较小的内边距 */
+            padding: 20px 0;
         }
 
-        /* 头部/英雄区样式 */
-        .hero-section {
-            text-align: center;
+        /* 头部 - 赛博朋克风格 */
+        header {
+            background-color: #0D0D0D;
+            /* 更深的头部背景 */
             padding: 40px 20px;
-            /* 更大的内边距 */
-            background-color: #FFFFFF;
-            border-radius: 15px;
-            /* 更大的圆角 */
-            margin-bottom: 30px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-            /* 更明显的阴影 */
+            text-align: center;
+            border-bottom: 2px solid #00FFFF;
+            /* 强调色：青色边框 */
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.2);
+            /* 青色光晕阴影 */
             position: relative;
             overflow: hidden;
-            /* 确保图片不溢出 */
         }
 
-        .hero-section::before {
+        header::before {
+            /* 顶部几何线条 */
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.9) 100%);
-            /* 渐变叠加，增加层次感 */
-            z-index: 1;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #00FFFF, transparent);
+            animation: scanline 3s infinite linear;
         }
 
-        .hero-section * {
-            position: relative;
-            z-index: 2;
-            /* 确保内容在渐变层之上 */
+        @keyframes scanline {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
-        .hero-section h1 {
-            color: #6B4F4F;
-            /* 柔和的棕红色标题 */
-            margin-bottom: 12px;
-            font-size: 2.5em;
-            /* 更大的标题 */
+        header h1 {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            /* 假设字体可用，未来感标题 */
+            font-size: 2.8em;
+            color: #00FFFF;
+            /* 青色标题 */
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+            /* 强光晕效果 */
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1em;
+            color: #B0B0B0;
+            margin-top: 15px;
             letter-spacing: 1px;
         }
 
-        .hero-section p {
-            color: #7A7A7A;
-            font-size: 1.1em;
-            max-width: 80%;
-            margin: 0 auto 20px;
+        /* 导航菜单 - 发光按钮 */
+        nav {
+            background-color: transparent;
+            /* 透明背景 */
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px dashed #333333;
+            /* 虚线分隔 */
         }
 
-        .hero-section nav ul {
+        nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
             justify-content: center;
-            /* 居中导航 */
             flex-wrap: wrap;
         }
 
-        .hero-section nav ul li {
-            margin: 8px 15px;
-            /* 增加导航项间距 */
+        nav ul li {
+            margin: 0 15px;
         }
 
-        .hero-section nav ul li a {
+        nav ul li a {
+            background-color: #222222;
+            /* 按钮背景 */
+            color: #00FFFF;
+            /* 青色文字 */
             text-decoration: none;
-            color: #A27B5C;
-            /* 大地色系强调色 */
-            font-weight: bold;
-            padding: 10px 18px;
-            border-radius: 25px;
-            /* 药丸形按钮 */
-            border: 1px solid #A27B5C;
-            transition: all 0.3s ease;
-            /* 平滑过渡 */
-        }
-
-        .hero-section nav ul li a:hover {
-            background-color: #A27B5C;
-            color: #ffffff;
-            box-shadow: 0 4px 8px rgba(162, 123, 92, 0.3);
-            /* 强调色阴影 */
-        }
-
-        /* 文章列表布局 */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            /* 移动端单列布局 */
-            gap: 25px;
-            /* 卡片间距 */
-        }
-
-        /* 文章卡片样式 */
-        article.blog-card {
-            background-color: #FFFFFF;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            /* 卡片阴影 */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-            /* 确保内容不溢出 */
-        }
-
-        article.blog-card:hover {
-            transform: translateY(-5px);
-            /* 鼠标悬停上移效果 */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            /* 更深阴影 */
-        }
-
-        article.blog-card h3 {
-            color: #6B4F4F;
-            /* 标题颜色 */
-            font-size: 1.4em;
-            margin-bottom: 8px;
-        }
-
-        article.blog-card .date {
-            color: #888;
-            font-size: 0.85em;
-            margin-bottom: 15px;
-            display: block;
-            /* 确保日期独占一行 */
-        }
-
-        article.blog-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin: 15px 0;
-            display: block;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        article.blog-card p {
-            color: #5A5A5A;
-            font-size: 0.95em;
-            margin-bottom: 20px;
-        }
-
-        article.blog-card .read-more {
-            display: inline-block;
-            background-color: #A27B5C;
-            color: #ffffff;
             padding: 10px 20px;
-            border-radius: 20px;
-            /* 药丸形按钮 */
-            text-decoration: none;
-            font-size: 0.9em;
+            border-radius: 5px;
+            /* 锐利边角 */
+            border: 1px solid #00FFFF;
+            /* 青色边框 */
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            display: inline-block;
             font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 1em;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+            /* 按钮发光 */
         }
 
-        article.blog-card .read-more:hover {
-            background-color: #8B6B4E;
-            /* 强调色深色 */
-            transform: scale(1.05);
-            /* 略微放大 */
+        nav ul li a:hover,
+        nav ul li a:focus {
+            background-color: #00FFFF;
+            /* 悬停时背景变为青色 */
+            color: #0A0A0A;
+            /* 悬停时文字变为深色 */
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+            /* 更强发光 */
         }
 
-        /* 关于我/联系区 */
+        /* 内容区 - 模块化数据块 */
+        main {
+            padding-top: 30px;
+        }
+
         section {
-            background-color: #FFFFFF;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
+            background-color: #1A1A1A;
+            /* 内容区背景 */
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 8px;
+            /* 适中圆角 */
+            border: 1px solid #333333;
+            /* 边框 */
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            /* 边角装饰 */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid #FF00FF;
+            /* 品红色 */
+            border-left: 2px solid #FF00FF;
+        }
+
+        section::after {
+            /* 边角装饰 */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid #FF00FF;
+            border-right: 2px solid #FF00FF;
         }
 
         section h2 {
-            color: #6B4F4F;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #EEE0D9;
-            /* 柔和的分割线 */
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2em;
+            color: #00FFFF;
+            /* 青色标题 */
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #333333;
+            /* 虚线分隔 */
             padding-bottom: 10px;
-            text-align: center;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        section h3 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.4em;
+            color: #FF00FF;
+            /* 品红色 */
+            margin-top: 25px;
+            margin-bottom: 10px;
         }
 
         section p {
-            color: #5A5A5A;
-            margin-bottom: 15px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            color: #C0C0C0;
+            margin-bottom: 20px;
         }
 
-        section a {
-            color: #A27B5C;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
+        section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 25px auto;
+            border-radius: 5px;
+            border: 2px solid #FF00FF;
+            /* 青色边框 */
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            /* 图片发光 */
         }
 
-        section a:hover {
-            color: #8B6B4E;
+        /* 代码块样式 - 终端风格 */
+        pre {
+            background-color: #000000;
+            /* 纯黑背景 */
+            color: #00FF00;
+            /* 亮绿色代码 */
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            margin-bottom: 25px;
+            border: 1px solid #00FF00;
+            /* 绿色边框 */
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+            /* 绿色发光 */
         }
 
-        /* 页脚样式 */
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            color: #00FF00;
+            /* 亮绿色 */
+        }
+
+        pre code {
+            color: #00FF00;
+        }
+
+        /* 页脚 - 简洁科技感 */
         footer {
-            text-align: center;
+            background-color: #0D0D0D;
+            /* 页脚背景 */
+            color: #B0B0B0;
             padding: 25px 0;
-            color: #888;
-            font-size: 0.85em;
-            border-top: 1px solid #EEE0D9;
-            margin-top: 30px;
-            background-color: #FFFFFF;
-            border-radius: 15px;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.03);
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 50px;
+            border-top: 2px solid #FF00FF;
+            /* 品红色边框 */
+            box-shadow: 0 -8px 25px rgba(255, 0, 255, 0.2);
+            /* 品红色光晕阴影 */
         }
 
-        .social-links {
-            margin-top: 15px;
-        }
-
-        .social-links a {
-            color: #A27B5C;
+        .footer-links a {
+            color: #FF00FF;
+            /* 品红色链接 */
             text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
-            transition: color 0.3s ease, transform 0.3s ease;
+            margin: 0 18px;
+            font-size: 1.2em;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
-        .social-links a:hover {
-            color: #8B6B4E;
-            transform: translateY(-2px);
+        .footer-links a:hover {
+            color: #00FFFF;
+            /* 悬停时变为青色 */
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
         }
     </style>
     <link rel="stylesheet" href="./static/css/style.css">
 </head>
 
 <body>
+    <header>
+        <div class="container">
+            <h1>未来协议</h1>
+            <p>数字前沿解析与趋势洞察</p>
+        </div>
+    </header>
+
     <div class="container">
-        <header class="hero-section">
-            <h1>我的灵感笔记</h1>
-            <p>在这里，我分享关于技术、生活和创意的思考与探索。</p>
-            <nav>
-                <ul>
-                    <li><a href="#articles">最新文章</a></li>
-                    <li><a href="#about">关于我</a></li>
-                    <li><a href="#contact">联系方式</a></li>
-                </ul>
-            </nav>
-        </header>
+        <nav id="mainNav">
+            <ul>
+                <li><a href="#intro-protocol">引言协议</a></li>
+                <li><a href="#data-structures">数据结构</a></li>
+                <li><a href="#quantum-computing">量子计算</a></li>
+            </ul>
+        </nav>
 
-        <main id="articles">
-            <h2>最新文章</h2>
-            <div class="articles-grid">
-                <!-- 文章一 -->
-                <article class="blog-card">
-                    <h3>深入理解JavaScript事件循环与异步编程</h3>
-                    <span class="date">发布日期：2023年7月29日</span>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() %>" alt="">
-                    <p>JavaScript的事件循环是理解其异步行为的关键。本文将通过图解和代码示例，带你彻底掌握宏任务、微任务以及它们如何协同工作。</p>
-                    <a href="#" class="read-more">阅读更多</a>
-                </article>
-                <!-- 文章二 -->
-                <article class="blog-card">
-                    <h3>高效时间管理：番茄工作法实践指南</h3>
-                    <span class="date">发布日期：2023年7月25日</span>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 1 %>" alt="">
-                    <p>番茄工作法是一种简单而高效的时间管理技术。本文将分享我实践番茄工作法的心得，并提供一些实用技巧，帮助你提升专注力和生产力。</p>
-                    <a href="#" class="read-more">阅读更多</a>
-                </article>
-                <!-- 文章三 -->
-                <article class="blog-card">
-                    <h3>探索生成式AI的艺术：从文本到图像的奇妙旅程</h3>
-                    <span class="date">发布日期：2023年7月20日</span>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 2 %>" alt="">
-                    <p>生成式AI正在改变我们创作和认知世界的方式。本文将探讨文本到图像生成技术的原理、应用及其对未来创意产业的影响。</p>
-                    <a href="#" class="read-more">阅读更多</a>
-                </article>
-                <!-- 文章四 -->
-                <article class="blog-card">
-                    <h3>我的极简主义生活实践：少即是多</h3>
-                    <span class="date">发布日期：2023年7月15日</span>
-                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 3 %>" alt="">
-                    <p>极简主义不仅仅是一种生活方式，更是一种思维模式。本文将分享我如何通过极简主义，简化生活，提升幸福感。</p>
-                    <a href="#" class="read-more">阅读更多</a>
-                </article>
-            </div>
+        <main>
+            <section id="intro-protocol">
+                <h2>引言协议：数字纪元的新范式</h2>
+                <img src="https://picsum.photos/300/200?random=1&id=futuristic-city-1" alt="未来城市景象"
+                    class="random-image">
+                <p>在高速迭代的数字纪元，理解并适应新的技术范式至关重要。本协议旨在为读者提供一份关于未来科技核心概念的深度解析，涵盖从基础架构到前沿应用的方方面面。</p>
+                <p>我们将探索数据流的优化路径、计算能力的边界突破，以及人工智能在伦理层面所面临的挑战与机遇。</p>
+            </section>
+
+            <section id="data-structures">
+                <h2>数据结构：信息流的骨架</h2>
+                <img src="https://picsum.photos/300/200?random=2&id=abstract-data-2" alt="抽象数据流" class="random-image">
+                <p>高效的数据结构是构建任何复杂系统的基石。它们决定了信息存储、检索与处理的效率。以下是一个简化版的链表节点定义：</p>
+                <pre><code>class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+# 创建链表
+head = Node(10)
+second = Node(20)
+third = Node(30)
+
+head.next = second
+second.next = third
+
+print(head.data) # 输出: 10
+print(head.next.data) # 输出: 20</code></pre>
+                <p>理解这些基本构造是优化大规模数据处理的关键。</p>
+            </section>
+
+            <section id="quantum-computing">
+                <h2>量子计算：超越经典极限</h2>
+                <img src="https://picsum.photos/300/200?random=3&id=quantum-circuit-3" alt="量子电路" class="random-image">
+                <p>量子计算代表着计算能力的下一次革命。通过利用量子力学现象，如叠加和纠缠，量子计算机有望解决经典计算机无法企及的问题。</p>
+                <p>尽管仍处于早期阶段，但其在密码学、材料科学和药物发现等领域的潜力已引起广泛关注。</p>
+                <pre><code>// 模拟一个简单的量子门操作
+function applyHadamard(qubitState) {
+    // 假设 qubitState 是 [alpha, beta]
+    // H门操作会将 |0> 变为 (|0> + |1>)/sqrt(2)
+    // |1> 变为 (|0> - |1>)/sqrt(2)
+    const [alpha, beta] = qubitState;
+    const sqrt2 = Math.sqrt(2);
+    return [
+        (alpha + beta) / sqrt2,
+        (alpha - beta) / sqrt2
+    ];
+}
+
+let initialQubit = [1, 0]; // |0> 态
+let afterHadamard = applyHadamard(initialQubit);
+// console.log(afterHadamard); // 输出: [0.707..., 0.707...]</code></pre>
+            </section>
+
+            <section id="ai-ethics">
+                <h2>AI伦理：智能时代的责任边界</h2>
+                <img src="https://picsum.photos/300/200?random=4&id=ai-ethics-4" alt="AI伦理与人类" class="random-image">
+                <p>随着人工智能的普及，关于其伦理影响的讨论变得日益重要。如何确保AI系统的公平性、透明度和可控性，是构建负责任AI的关键。</p>
+                <p>我们必须建立健全的监管框架和道德准则，以引导AI技术朝着有益于人类社会的方向发展。</p>
+            </section>
         </main>
+    </div>
 
-        <section id="about">
-            <h2>关于我</h2>
-            <p>你好！我是一个热爱学习和分享的探索者。这个博客是我记录个人成长、技术心得和生活感悟的平台。我相信知识的分享能带来更大的价值。</p>
-            <p>希望我的文字能为你带来启发，也欢迎你与我交流！</p>
-        </section>
-
-        <section id="contact">
-            <h2>联系方式</h2>
-            <div class="social-links">
-                <a href="#" aria-label="GitHub">GitHub</a> |
-                <a href="#" aria-label="Twitter">Twitter</a> |
-                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 未来协议. 数据流已加密.</p>
+            <div class="footer-links">
+                <a href="#" target="_blank">数据端口</a> |
+                <a href="#" target="_blank">通讯链路</a> |
+                <a href="#" target="_blank">系统日志</a>
             </div>
-        </section>
-
-        <footer>
-            <p>&copy; 2023 我的灵感笔记. All rights reserved.</p>
-        </footer>
-        <div id="overlay">
-            <div id="loading_box" class="loading_container">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
+        </div>
+    </footer>
+    <div id="overlay">
+        <div id="loading_box" class="loading_container">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
         </div>
     </div>
 
     <script>
-        // JavaScript for smooth scrolling
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault(); // 阻止默认跳转行为
-
-                const targetId = this.getAttribute('href'); // 获取目标ID
-                const targetElement = document.querySelector(targetId); // 获取目标元素
-
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 60, // 减去一些偏移量，避免被顶部导航遮挡
-                        behavior: 'smooth' // 平滑滚动效果
-                    });
-                }
-            });
-        });
-
-        // 动态更新图片时间戳，确保每次加载都不同
         document.addEventListener('DOMContentLoaded', function () {
-            const images = document.querySelectorAll('img[src*="picsum.photos"]');
-            images.forEach(img => {
-                const url = new URL(img.src);
-                url.searchParams.set('random', new Date().getTime() + Math.floor(Math.random() * 1000)); // 添加随机数确保唯一性
-                img.src = url.toString();
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
         });
     </script>
